@@ -1,0 +1,7 @@
+# Project exclude paths
+/jason-order/target/
+/jason-stock/target/
+/jason-text/target/
+/oauth2-auth/target/
+/oauth2-gateway/target/
+/oauth2-user-server/target/
