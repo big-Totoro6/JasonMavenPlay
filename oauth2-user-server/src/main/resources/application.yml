@@ -1,0 +1,34 @@
+server:
+  port: 9501
+spring:
+  application:
+    name: user-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&&useSSL=false
+    jpa:
+      #配置数据库类型
+      database: MYSQL
+      #配置是否打印sql
+#      show-sql: true
+      #Hibernate相关配置
+      hibernate:
+        #配置级联等级
+        ddl-auto: none
+        format_sql: true
+        naming:
+          #命名策略
+          strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQL5Dialect
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE

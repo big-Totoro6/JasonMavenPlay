@@ -1,0 +1,12 @@
+Oauth2认证服务，负责对登录用户进行认证，整合Spring Security+Oauth2；
+网关服务的鉴权功能也需要依赖认证服务
+
+1.在pom.xml中添加相关依赖，主要是Spring Security、Oauth2、JWT、Redis相关依赖；
+2.在application.yml中添加相关配置，主要是Nacos和Redis相关配置；
+3.使用keytool生成RSA证书jwt.jks，复制到resource目录下，在JDK的bin目录下使用如下命令即可；
+4.创建UserServiceImpl类实现Spring Security的UserDetailsService接口，用于加载用户信息；
+5.添加认证服务相关配置Oauth2ServerConfig，需要配置加载用户信息的服务UserServiceImpl及RSA的钥匙对KeyPair；
+6.如果你想往JWT中添加自定义信息的话，比如说登录用户的ID，可以自己实现TokenEnhancer接口；
+7.由于我们的网关服务需要RSA的公钥来验证签名是否合法，所以认证服务需要有个接口把公钥暴露出来； 获取RSA公钥接口
+8.不要忘了还需要配置Spring Security，允许获取公钥接口的访问；
+9.创建一个资源服务ResourceServiceImpl，初始化的时候把资源与角色匹配关系缓存到Redis中，方便网关服务进行鉴权的时候获取。
