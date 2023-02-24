@@ -2,7 +2,7 @@ package com.jason.cloud.constant;
 
 /**
  * Redis常量
- * Created by macro on 2020/6/19.
+ * 我改的别的东西 没有冲突
  */
 public class RedisConstant {
 
