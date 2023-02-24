@@ -16,7 +16,7 @@ public class AuthController {
     public CommonResult<String> test(){
         return CommonResult.success("试试");
     }
-
+    //test revert
     @GetMapping("/adminAuth")
     public CommonResult<String> adminAuth(){
         return CommonResult.success("adminAuth");
