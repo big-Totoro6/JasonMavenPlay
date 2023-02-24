@@ -9,6 +9,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 
 import java.security.KeyPair;
@@ -42,6 +43,8 @@ public class WebSecurityConfig {
                         .requestMatchers("/adminAuth").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
                 )
+                //放跨站请求伪造
+                .csrf(AbstractHttpConfigurer::disable)
                 .httpBasic(withDefaults());
         return http.build();
     }
@@ -56,6 +59,7 @@ public class WebSecurityConfig {
         return (web) -> web.ignoring().requestMatchers("/ignore/**", "/ignore2")
                 // ignore all URLs that start with /resources/ or /static/
                 .requestMatchers("/resources/**")
+                .requestMatchers("/user/**")
                 .requestMatchers("/static/**");
     }
 
