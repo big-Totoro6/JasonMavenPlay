@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
 
-    //test revert
     // 测试登录，浏览器访问： http://localhost:8081/user/doLogin?username=zhang&password=123456
     @RequestMapping("doLogin")
     public String doLogin(String username, String password) {
