@@ -1,9 +1,0 @@
-server:
-  port: 9504
-spring:
-  application:
-    name: jason-order-server
-  cloud:
-    nacos:
-      discovery:
-        server-addr: localhost:8848

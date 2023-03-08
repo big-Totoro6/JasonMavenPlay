@@ -1,9 +1,0 @@
-server:
-  port: 9505
-spring:
-  application:
-    name: jason-stock-server
-  cloud:
-    nacos:
-      discovery:
-        server-addr: localhost:8848

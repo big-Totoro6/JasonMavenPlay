@@ -8,17 +8,27 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="oauth2-user-server" />
-        <module name="jason-text" />
         <module name="jason-order" />
         <module name="oauth2-auth" />
-        <module name="jason-stock" />
+        <module name="jason-common" />
         <module name="oauth2-gateway" />
+        <module name="jason-sa-token-api" />
+        <module name="jason-text" />
+        <module name="jason-stock" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="jason-order" target="17" />
+      <module name="jason-sa-token-api" target="17" />
+      <module name="jason-stock" target="17" />
+      <module name="jason-text" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="jason-common" options="-parameters" />
       <module name="jason-order" options="-parameters" />
+      <module name="jason-sa-token-api" options="-parameters" />
       <module name="jason-stock" options="-parameters" />
       <module name="jason-text" options="-parameters" />
       <module name="oauth2-auth" options="-parameters" />

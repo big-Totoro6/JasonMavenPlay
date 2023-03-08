@@ -34,6 +34,15 @@ public class LoginController {
     public SaResult tokenInfo() {
         return SaResult.data(StpUtil.getTokenInfo());
     }
+    // 校验当前登录状态  ---- http://localhost:9601/acc/checkLogin
+    @RequestMapping("checkLogin")
+    public SaResult checkLogin() {
+        // 检验当前会话是否已经登录, 如果未登录，则抛出异常：`NotLoginException`
+        StpUtil.checkLogin();
+
+        // 抛出异常后，代码将走入全局异常处理（GlobalException.java），如果没有抛出异常，则代表通过了登录校验，返回下面信息
+        return SaResult.ok("校验登录成功，这行字符串是只有登录后才会返回的信息");
+    }
 
     // 测试注销  ---- http://localhost:9601/acc/logout
     @RequestMapping("logout")
