@@ -8,13 +8,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="oauth2-user-server" />
-        <module name="jason-order" />
         <module name="oauth2-auth" />
         <module name="jason-common" />
         <module name="oauth2-gateway" />
-        <module name="jason-sa-token-api" />
-        <module name="jason-text" />
-        <module name="jason-stock" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
