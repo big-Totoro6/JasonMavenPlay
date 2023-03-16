@@ -1,5 +1,6 @@
 package com.jason.example.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jason.example.common.enums.EnumSex;
 import com.jason.example.common.enums.VipEnum;
 import jakarta.persistence.*;
@@ -33,6 +34,7 @@ public class User implements Serializable {
     /**
      * 
      */
+    @JsonProperty("fakeName")
     @Column(name = "name")
     private String name;
 

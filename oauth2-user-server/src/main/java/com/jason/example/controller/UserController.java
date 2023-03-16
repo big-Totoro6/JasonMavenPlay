@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @PostMapping("/save")
-    public Object save(User user){
+    public Object save(@RequestBody User user){
         return CommonResult.success(userService.save(user));
     }
 
