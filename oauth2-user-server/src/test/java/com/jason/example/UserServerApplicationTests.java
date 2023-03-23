@@ -3,8 +3,10 @@ package com.jason.example;
 import com.alibaba.cloud.commons.lang.StringUtils;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.nacos.shaded.io.grpc.internal.JsonUtil;
+import com.jason.example.controller.CustomerService;
 import com.jason.example.dao.CustomerRepository;
 import com.jason.example.domain.Customer;
+import com.jason.example.domain.CustomerRegistrationRequest;
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -29,6 +31,8 @@ public class UserServerApplicationTests {
     @Autowired
     private CustomerRepository customerRepository;
     Calculator underTest =new Calculator();
+    @Autowired
+    private CustomerService customerService;
 
     @Test
     void itShouldCheckIfCustomerExistsEmail() {
@@ -102,5 +106,9 @@ public class UserServerApplicationTests {
         int add(int a,int b){
             return a+b;
         }
+    }
+    @Test
+    public void test_CustomerService(){
+        customerService.registerCustomer(new CustomerRegistrationRequest("ZZ","ZZ","00ZZ@163.com"));
     }
 }
