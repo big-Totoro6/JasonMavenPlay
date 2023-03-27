@@ -2,20 +2,26 @@ package com.jason.example;
 
 import com.alibaba.cloud.commons.lang.StringUtils;
 import com.alibaba.fastjson2.JSON;
-import com.alibaba.nacos.shaded.io.grpc.internal.JsonUtil;
 import com.jason.example.controller.CustomerService;
 import com.jason.example.dao.CustomerRepository;
 import com.jason.example.domain.Customer;
 import com.jason.example.domain.CustomerRegistrationRequest;
+import org.aspectj.lang.annotation.Before;
 import org.assertj.core.api.AssertionsForClassTypes;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.time.Duration;
 import java.util.List;
@@ -23,8 +29,12 @@ import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UserServerApplicationTests {
     public final Logger logger=Logger.getGlobal();
 
@@ -33,6 +43,28 @@ public class UserServerApplicationTests {
     Calculator underTest =new Calculator();
     @Autowired
     private CustomerService customerService;
+
+    @Autowired
+    private WebApplicationContext webApplicationContext;
+
+
+    private MockMvc mockMvc;
+
+    @BeforeAll
+    public void setUp() throws Exception {
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+    }
+
+    @Test
+    @DisplayName("测试customer列表接口")
+    public void testGetUserList() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/customers/getCustomers").accept(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk())
+                .andDo(print()).andReturn();
+        MockHttpServletResponse response = mvcResult.getResponse();
+    }
+
+
 
     @Test
     void itShouldCheckIfCustomerExistsEmail() {
