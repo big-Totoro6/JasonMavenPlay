@@ -17,8 +17,6 @@
         <module>oauth2-auth</module>
         <module>oauth2-gateway</module>
         <module>oauth2-user-server</module>
-        <module>jason-common</module>
-
     </modules>
 
     <dependencyManagement>

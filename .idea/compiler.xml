@@ -9,11 +9,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="oauth2-user-server" />
         <module name="oauth2-auth" />
-        <module name="jason-common" />
         <module name="oauth2-gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="jason-common" target="17" />
       <module name="jason-order" target="17" />
       <module name="jason-sa-token-api" target="17" />
       <module name="jason-stock" target="17" />
