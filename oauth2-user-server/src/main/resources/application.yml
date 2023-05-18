@@ -24,4 +24,8 @@ spring:
 #logging:
 #  level:
 #    org.hibernate.SQL: DEBUG
+jason:
+  json:
+    prefix-name: Jason
+    suffix-name: From BigTotoro
 #    org.hibernate.type: TRACE

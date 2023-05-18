@@ -18,10 +18,10 @@ public class PmsPosition {
     @Column(name = "phid")
     private Long phid;
 
-    @Column(columnDefinition = "parent_id")
+    @Column(name = "parent_id")
     private Long parentId;
 
-    @Column(columnDefinition = "name")
+    @Column(name = "name")
     private String name;
 
 }
