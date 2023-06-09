@@ -7,4 +7,5 @@ import java.util.List;
 public interface UserService {
     List<User> getLists();
     Long save(User user);
+    Integer delete(Long id);
 }
