@@ -2,10 +2,13 @@ package com.jason.example;
 
 import com.alibaba.cloud.commons.lang.StringUtils;
 import com.alibaba.fastjson2.JSON;
+import com.jason.example.common.approve.GMHandler;
+import com.jason.example.common.approve.PMHandler;
 import com.jason.example.controller.CustomerService;
 import com.jason.example.dao.CustomerRepository;
 import com.jason.example.domain.Customer;
 import com.jason.example.domain.CustomerRegistrationRequest;
+import com.jason.example.domain.LeaveRequest;
 import org.aspectj.lang.annotation.Before;
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.*;
@@ -14,6 +17,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
@@ -142,5 +146,14 @@ public class UserServerApplicationTests {
     @Test
     public void test_CustomerService(){
         customerService.registerCustomer(new CustomerRegistrationRequest("ZZ","ZZ","00ZZ@163.com"));
+    }
+
+    @Test
+    public void test_chain_approve(){
+        PMHandler pmHandler = new PMHandler();
+        GMHandler gmHandler = new GMHandler();
+        LeaveRequest jason = new LeaveRequest("Jason", 5, 3);
+        pmHandler.setNext(gmHandler);
+        pmHandler.process(jason);
     }
 }
